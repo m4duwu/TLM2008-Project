@@ -28,7 +28,7 @@ const Dashboard = () => {
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 const layout = [
-  { i:   "summoned-skull", x: 0, y: 0, w: 5, h: 2, },
+  { i:   "summoned-skull", x: 0, y: 0, w: 5, h: 3, },
   { i: "blue-eyes-dragon", x: 0, y: 1, w: 1, h: 1, },
   { i:    "dark-magician", x: 1, y: 1, w: 1, h: 1, },
   { i:          "kuriboh", x: 2, y: 1, w: 1, h: 1, },
@@ -46,7 +46,7 @@ const Root = styled.div`
     // <Box m="20px">
       // {/* HEADER */}
       <Root >
-      <Box display="flex" justifyContent="space-between" alignItems="center">
+      <Box display="flex" justifyContent="space-between" alignItems="center" m="20px">
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
 
         <Box>
@@ -74,7 +74,23 @@ width={1000}
 
 >
   <GridItemWrapper key="summoned-skull">
-  <GridItemContent>Summoned Skull</GridItemContent>
+  <GridItemContent>
+    <Box
+          gridColumn="span 4"
+          gridRow="span 2"
+          backgroundColor={colors.primary[400]}
+        >
+          <Typography
+            variant="h5"
+            fontWeight="600"
+            sx={{ padding: "10px 10px 0 10px" }}
+          >
+            Sales Quantity
+          </Typography>
+          <Box height="250px" mt="-20px">
+            <BarChart isDashboard={true} />
+          </Box>
+        </Box></GridItemContent>
 </GridItemWrapper>
 
 <GridItemWrapper key="blue-eyes-dragon" >

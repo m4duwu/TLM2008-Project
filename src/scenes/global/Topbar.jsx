@@ -1,13 +1,16 @@
 import { Box, IconButton, useTheme } from "@mui/material";
 import { useContext } from "react";
 import { ColorModeContext, tokens } from "../../theme";
-import InputBase from "@mui/material/InputBase";
+import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
+import * as React from 'react';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import SearchIcon from "@mui/icons-material/Search";
+
 
 const Topbar = () => {
   const theme = useTheme();
@@ -15,18 +18,15 @@ const Topbar = () => {
   const colorMode = useContext(ColorModeContext);
 
   return (
-    <Box display="flex" justifyContent="space-between" p={2}>
-      {/* SEARCH BAR */}
-      <Box
+    <Box m="10px" display="flex">
+    <Box
         display="flex"
-        backgroundColor={colors.primary[400]}
-        borderRadius="3px"
-      >
-        <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Search" />
-        <IconButton type="button" sx={{ p: 1 }}>
-          <SearchIcon />
-        </IconButton>
+    >
+
       </Box>
+    <Box display="flex" justifyContent="space-between" p={2} 
+    position="absolute" right='0'>
+ 
 
       {/* ICONS */}
       <Box display="flex">
@@ -43,10 +43,30 @@ const Topbar = () => {
         <IconButton>
           <SettingsOutlinedIcon />
         </IconButton>
-        <IconButton>
-          <PersonOutlinedIcon />
-        </IconButton>
+        
+       
+
+    <PopupState variant="popover" popupId="demo-popup-menu">
+      {(popupState) => (
+        <React.Fragment>
+          <IconButton variant="contained" {...bindTrigger(popupState)}><PersonOutlinedIcon /></IconButton>
+          <Menu {...bindMenu(popupState)}>
+            <MenuItem onClick={popupState.close}>Profile</MenuItem>
+            <MenuItem onClick={popupState.close}>Edit account</MenuItem>
+            <MenuItem onClick={popupState.close}>Logout</MenuItem>
+          </Menu>
+        </React.Fragment>
+      )}
+    </PopupState>
+
+
+    
+        
+        
+      
+     
       </Box>
+    </Box>
     </Box>
   );
 };
