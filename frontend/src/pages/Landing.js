@@ -10,7 +10,7 @@ const Landing = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_nv7vmba', 'template_b5f92qx', form.current, 'owzDbQLdhuY78t44i')
+    emailjs.sendForm('service', 'template', form.current, 'user key')
       .then((result) => {
           console.log(result.text);
           window.confirm("Email sent")
